@@ -1,5 +1,6 @@
 package com.glinboy.test.maybank.service.impl;
 
+import java.util.List;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -29,6 +30,11 @@ public abstract class AbstractServiceImpl<T extends BaseEntity, S extends JpaRep
 	@Transactional
 	public T save(T t) {
 		return repository.save(t);
+	}
+	
+	@Override
+	public List<T> saveAll(List<T> t) {
+		return repository.saveAll(t);
 	}
 
 	@Override

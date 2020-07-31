@@ -20,7 +20,4 @@ public abstract class BaseEntity extends Auditable<String> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID", updatable = false, nullable = false)
 	private Long id;
-
-	@Column(name = "IS_ACTIVE", nullable = false)
-	private Boolean isActive;
 }
