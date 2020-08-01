@@ -16,6 +16,8 @@ import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,7 +45,7 @@ public class TransactionServiceImpl extends AbstractServiceImpl<Transaction, Tra
 			InputStream is = file.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 			int lineNumber = 0;
-			List<Transaction> trxs = new ArrayList();
+			List<Transaction> trxs = new ArrayList<>();
 			while (reader.ready()) {
 				lineNumber++;
 				String line = reader.readLine();
@@ -68,6 +70,21 @@ public class TransactionServiceImpl extends AbstractServiceImpl<Transaction, Tra
 		transaction.setTrxTime(LocalTime.parse(attributes[4]));
 		transaction.setCustomerId(Long.valueOf(attributes[5]));
 		return transaction;
+	}
+
+	@Override
+	public Page<Transaction> getTransactionsByCustomerId(Long customerId, Pageable pageable) {
+		return this.repository.findAllByCustomerId(customerId, pageable);
+	}
+
+	@Override
+	public Page<Transaction> getTransactionsByAccountNumber(String accountNumber, Pageable pageable) {
+		return this.repository.findAllByAccountNumber(accountNumber, pageable);
+	}
+
+	@Override
+	public Page<Transaction> getTransactionsByDescription(String description, Pageable pageable) {
+		return this.repository.findAllByDescription(description, pageable);
 	}
 
 }

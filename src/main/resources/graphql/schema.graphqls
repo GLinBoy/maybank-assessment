@@ -1,0 +1,22 @@
+scalar BigDecimal
+scalar LocalDate
+scalar LocalTime
+scalar Long
+
+type Transaction {
+	id: ID!
+	accountNumber: String!
+	trxAmount: BigDecimal!
+	description: String!
+	trxDate: LocalDate!
+	trxTime: LocalTime!
+	customerId: Long!
+}
+
+type Query {
+	hello(who: String): String!
+	getTransactions(page: Int!, size : Int!): [Transaction!]!
+	getTransactionsByCustomerId(customerId: Long!, page: Int!, size : Int!): [Transaction!]!
+	getTransactionsByAccountNumber(accountNumber: String!, page: Int!, size : Int!): [Transaction!]!
+	getTransactionsByDescription(description: String!, page: Int!, size : Int!): [Transaction!]!
+}
