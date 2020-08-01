@@ -51,6 +51,16 @@ public abstract class AbstractServiceImpl<T extends BaseEntity, S extends JpaRep
 		return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
 				messages.getString("common.error.not.found").concat(id.toString())));
 	}
+	
+	@Override
+	public Long count() {
+		return repository.count();
+	}
+	
+	@Override
+	public List<T> getAll() {
+		return repository.findAll();
+	}
 
 	@Override
 	public Page<T> getAll(Pageable pageable) {

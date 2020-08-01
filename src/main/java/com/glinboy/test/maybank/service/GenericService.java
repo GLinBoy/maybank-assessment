@@ -13,9 +13,12 @@ public interface GenericService<T> {
 	T update(T t);
 
 	T getSingleById(Long id);
+	
+	Long count();
 
+	List<T> getAll();
+	
 	Page<T> getAll(Pageable pageable);
-
 
 	void deleteSingleById(Long id);
 
