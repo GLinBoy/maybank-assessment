@@ -15,5 +15,8 @@ type Transaction {
 
 type Query {
 	hello(who: String): String!
-	getTransactions: [Transaction!]!
+	getTransactions(page: Int!, size : Int!): [Transaction!]!
+	getTransactionsByCustomerId(customerId: Long!, page: Int!, size : Int!): [Transaction!]!
+	getTransactionsByAccountNumber(accountNumber: String!, page: Int!, size : Int!): [Transaction!]!
+	getTransactionsByDescription(description: String!, page: Int!, size : Int!): [Transaction!]!
 }
